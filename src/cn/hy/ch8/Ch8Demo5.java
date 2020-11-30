@@ -6,4 +6,20 @@ package cn.hy.ch8;
  */
 public class Ch8Demo5{
 
+    public <T> T sort(Class<T> tClass) throws IllegalAccessException, InstantiationException {
+        T container = tClass.newInstance();
+        return container;
+    }
+
+    class Dog {
+        private int dogId;
+
+        public int getDogId() {
+            return dogId;
+        }
+
+        public void setDogId(int dogId) {
+            this.dogId = dogId;
+        }
+    }
 }

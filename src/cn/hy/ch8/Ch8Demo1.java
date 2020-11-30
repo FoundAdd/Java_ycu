@@ -15,9 +15,9 @@ import java.util.Set;
  */
 public class Ch8Demo1{
     public static void main(String[] args) {
-        People people1 = new People("张三", 18);
-        People people2 = new People("张三", 18);
-        People people3 = new People("李四", 26);
+        Person people1 = new Person("张三", 18);
+        Person people2 = new Person("张三", 18);
+        Person people3 = new Person("李四", 26);
         Dog dog1 = new Dog("张三", 18);
         Dog dog2 = new Dog("李四", 26);
 
@@ -37,11 +37,11 @@ public class Ch8Demo1{
 
         for (Object ob : set){
             try {
-                People peoTmp = (People) ob;
-                peoTmp.printInfo();
+                Person peoTmp = (Person) ob;
+                System.out.println(peoTmp.toString());
             } catch (Exception e) {
                 Dog dogTmp = (Dog) ob;
-                dogTmp.printInfo();
+                System.out.println(dogTmp.toString());
             }
             System.out.println("------------------------------");
 
@@ -49,18 +49,16 @@ public class Ch8Demo1{
     }
 
 
-    static class People{
+    static class Person{
         private String sName;
         private Integer iAge;
 
-        People(String name, Integer age){
+        Person(String name, Integer age){
             this.sName = name;
             this.iAge = age;
         }
-
-        void printInfo(){
-            System.out.println("name：" + sName);
-            System.out.println("age：" + iAge);
+        public String toString(){
+            return "name：" + sName + "\nage：" + iAge;
         }
     }
 
@@ -73,9 +71,8 @@ public class Ch8Demo1{
             this.iAge = age;
         }
 
-        void printInfo(){
-            System.out.println("name：" + sName);
-            System.out.println("age：" + iAge);
+        public String toString(){
+            return "name：" + sName + "\nage：" + iAge;
         }
     }
 }
