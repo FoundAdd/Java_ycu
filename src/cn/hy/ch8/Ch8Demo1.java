@@ -53,6 +53,14 @@ public class Ch8Demo1{
         private String sName;
         private Integer iAge;
 
+        public String getsName() {
+            return sName;
+        }
+
+        public Integer getiAge() {
+            return iAge;
+        }
+
         Person(String name, Integer age){
             this.sName = name;
             this.iAge = age;
@@ -69,6 +77,14 @@ public class Ch8Demo1{
         Dog(String name, Integer age){
             this.sName = name;
             this.iAge = age;
+        }
+
+        public String getsName() {
+            return sName;
+        }
+
+        public Integer getiAge() {
+            return iAge;
         }
 
         public String toString(){
