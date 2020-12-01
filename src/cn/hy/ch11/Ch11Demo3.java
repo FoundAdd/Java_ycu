@@ -1,7 +1,7 @@
 package cn.hy.ch11;
 
 
-import java.io.File;
+import java.io.*;
 
 /**
  * 编写Ch11Demo3类，实现:
@@ -16,10 +16,19 @@ import java.io.File;
  * (b)程序到图片文件 FileOutputStream
  */
 public class Ch11Demo3 {
-    public static void main(String[] args) {
-        File readFile = new File("E:\\test\\Penguins.jpg");
+    public static void main(String[] args) throws IOException {
+        File readFile = new File("G:\\tmp\\test.png");
+        FileInputStream fin = new FileInputStream(readFile);
         byte[] bytes = new byte[(int) readFile.length()];
+        ByteArrayOutputStream baos = new ByteArrayOutputStream((int) readFile.length());
 
-        System.out.println(bytes.length);
+        fin.read(bytes);
+        baos.write(bytes);
+        baos.flush();
+
+        //写出
+        File writeFile = new File("G:\\tmp\\write.png");
+        FileOutputStream fout = new FileOutputStream(writeFile);
+        fout.write(baos.toByteArray());
     }
 }

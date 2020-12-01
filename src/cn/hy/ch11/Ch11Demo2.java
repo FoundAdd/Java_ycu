@@ -12,8 +12,8 @@ import java.io.*;
  */
 public class Ch11Demo2 {
     public static void main(String[] args) throws IOException {
-        File readFile = new File("E:\\test\\txt1.txt");
-        File writeFile = new File("E:\\test\\txt2.txt");
+        File readFile = new File("G:\\tmp\\txt1.txt");
+        File writeFile = new File("G:\\tmp\\txt2.txt");
         char[] chars = new char[(int) readFile.length()];
         FileReader fr = new FileReader(readFile);
 
