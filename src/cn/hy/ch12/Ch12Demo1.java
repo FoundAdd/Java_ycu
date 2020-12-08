@@ -11,7 +11,7 @@ import java.util.Date;
  * 在主线程中同时启用另一个线程，输出每隔1秒的当前系统时间。（两种方法）
  */
 public class Ch12Demo1 extends Thread{
-    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+    static SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
     @Override
     public void run() {
         while (true) {
@@ -27,6 +27,39 @@ public class Ch12Demo1 extends Thread{
     public static void main(String[] args){
         Ch12Demo1 thread = new Ch12Demo1();
         int i=0;
+
+        thread.start();
+
+        while (true) {
+            System.out.println("我是主线程 " + i++);
+            try {
+                thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+//方法二
+class ThreadMethod2 implements Runnable{
+
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println(Ch12Demo1.sdf.format(new Date()));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int i = 0;
+        Runnable threadMethod2 = new ThreadMethod2();
+        Thread thread = new Thread(threadMethod2);
 
         thread.start();
 
