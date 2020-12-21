@@ -8,7 +8,7 @@ package cn.hy.ch12;
 public class Ch12Demo4 implements Runnable{
     public static volatile int[] cakes = new int[100];
     public static volatile int index = 0;
-    public volatile  boolean isLive = true;
+    public volatile boolean isLive = true;
 
     public static void main(String[] args) {
         Runnable runnable = new Ch12Demo4();
@@ -22,6 +22,7 @@ public class Ch12Demo4 implements Runnable{
         while (index < cakes.length-1) {
             cakes[index++] = 1;
         }
+        System.out.println("生产了100个馒头，当前馒头剩余100个");
 
         t1.start();
         t2.start();
@@ -33,10 +34,9 @@ public class Ch12Demo4 implements Runnable{
                 String currentHandle = Thread.currentThread().getName();
                 if (currentHandle.equals("+")){
                     //生产（每次生产100个馒头）
-                    if (cakes[5] == 0) {
+                    if (cakes[1] == 0) {
                         addCake(100);
-                        index = 100;
-                        Thread.yield();
+                        index = 99;
                     }
                 } else if (currentHandle.equals("-")) {
                     //消费
@@ -46,7 +46,7 @@ public class Ch12Demo4 implements Runnable{
                     }else {
                         minusCake();
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -57,14 +57,15 @@ public class Ch12Demo4 implements Runnable{
     }
 
     public void addCake(int number) {
-        for (int i=5; i<number; i++) {
+        for (int i=1; i<number; i++) {
             cakes[i] = 1;
         }
-        System.out.println("生产了" + number + "个馒头，当前馒头剩余" + (number-5) + "个");
+        index += number;
+        System.out.println("生产了" + (number-1) + "个馒头，当前馒头剩余" + number + "个");
     }
 
     public void minusCake() {
         cakes[index--] = 0;
-        System.out.println("售出了1个馒头，当前馒头剩余" + index + "个");
+        System.out.println("售出了1个馒头，当前馒头剩余" + (index+1) + "个");
     }
 }
